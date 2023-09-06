@@ -9,12 +9,14 @@ class MQTTFacility extends BaseFacility {
   constructor (caller, opts, ctx) {
     super(caller, opts, ctx)
     this.name = 'mqtt'
-    this._hasConf = true
+    this._hasConf = false
+    this.clients = []
     this.init()
   }
 
   getClient (opts) {
     const client = mqtt.connect(opts.url, opts.libOpts)
+    this.clients.push(client)
     return client
   }
 
@@ -35,7 +37,10 @@ class MQTTFacility extends BaseFacility {
       async () => {
         if (this.server) {
           await this.server.close()
-          aedes.close()
+        }
+        aedes.close()
+        for (const client of this.clients) {
+          await client.end()
         }
       }
     ], cb)
