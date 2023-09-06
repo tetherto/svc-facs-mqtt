@@ -9,7 +9,7 @@ class MQTTFacility extends BaseFacility {
   constructor (caller, opts, ctx) {
     super(caller, opts, ctx)
     this.name = 'mqtt'
-    this._hasConf = false
+    this._hasConf = opts._hasConf || true
     this.clients = []
     this.init()
   }
