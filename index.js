@@ -34,13 +34,13 @@ class MQTTFacility extends BaseFacility {
   _stop (cb) {
     async.series([
       next => { super._stop(next) },
-      async () => {
+      () => {
         if (this.server) {
-          await this.server.close()
+          this.server.close()
         }
         aedes.close()
         for (const client of this.clients) {
-          await client.end()
+          client.end()
         }
       }
     ], cb)
