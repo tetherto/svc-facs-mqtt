@@ -25,7 +25,6 @@ class MQTTFacility extends BaseFacility {
       throw new Error('ERR_FACS_SERVER_MQTT_CREATE_DUP')
     }
 
-    this.aedes = aedes
     const srv = require('net').createServer(aedes.handle)
     this.server = srv
 
