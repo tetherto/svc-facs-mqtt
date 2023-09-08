@@ -2,7 +2,7 @@
 
 const BaseFacility = require('bfx-facs-base')
 const mqtt = require('mqtt')
-const aedes = require('aedes')()
+const aedes = require('aedes')
 const async = require('async')
 
 class MQTTFacility extends BaseFacility {
@@ -25,7 +25,8 @@ class MQTTFacility extends BaseFacility {
       throw new Error('ERR_FACS_SERVER_MQTT_CREATE_DUP')
     }
 
-    const srv = require('net').createServer(aedes.handle)
+    this.aedes = aedes()
+    const srv = require('net').createServer(this.aedes.handle)
     this.server = srv
 
     return await this.server.listen({ port: this.conf.port })
