@@ -29,6 +29,7 @@ class MQTTFacility extends BaseFacility {
     this.server = srv
 
     return this.server.listen({
+      host: '0.0.0.0',
       port: this.opts.port || this.conf.port
     })
   }
