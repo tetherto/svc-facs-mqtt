@@ -9,6 +9,11 @@ class MQTTFacility extends BaseFacility {
   constructor (caller, opts, ctx) {
     super(caller, opts, ctx)
     this.name = 'mqtt'
+
+    if (!opts.port) {
+      throw new Error('ERR_FACS_SERVER_MQTT_PORT_REQ')
+    }
+
     this._hasConf = false
     this.clients = []
     this.init()
@@ -31,7 +36,7 @@ class MQTTFacility extends BaseFacility {
 
     return this.server.listen({
       host: '0.0.0.0',
-      port: this.opts.port || 10883
+      port: this.opts.port
     })
   }
 
