@@ -27,6 +27,7 @@ class MQTTFacility extends BaseFacility {
 
     const srv = require('net').createServer(aedes.handle)
     this.server = srv
+    this.aedes = aedes
 
     return this.server.listen({
       host: '0.0.0.0',
