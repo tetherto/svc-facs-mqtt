@@ -9,7 +9,12 @@ class MQTTFacility extends BaseFacility {
   constructor (caller, opts, ctx) {
     super(caller, opts, ctx)
     this.name = 'mqtt'
-    this._hasConf = opts._hasConf || true
+
+    if (!opts.port) {
+      throw new Error('ERR_FACS_SERVER_MQTT_PORT_REQ')
+    }
+
+    this._hasConf = false
     this.clients = []
     this.init()
   }
@@ -27,10 +32,11 @@ class MQTTFacility extends BaseFacility {
 
     const srv = require('net').createServer(aedes.handle)
     this.server = srv
+    this.aedes = aedes
 
     return this.server.listen({
       host: '0.0.0.0',
-      port: this.opts.port || this.conf.port
+      port: this.opts.port
     })
   }
 
