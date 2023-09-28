@@ -2,7 +2,6 @@
 
 const BaseFacility = require('bfx-facs-base')
 const mqtt = require('mqtt')
-const aedes = require('aedes')()
 const async = require('async')
 
 class MQTTFacility extends BaseFacility {
@@ -30,9 +29,8 @@ class MQTTFacility extends BaseFacility {
       throw new Error('ERR_FACS_SERVER_MQTT_CREATE_DUP')
     }
 
-    const srv = require('net').createServer(aedes.handle)
-    this.server = srv
-    this.aedes = aedes
+    this.aedes = require('aedes')()
+    this.server = require('net').createServer(this.aedes.handle)
 
     return this.server.listen({
       host: '0.0.0.0',
@@ -47,7 +45,7 @@ class MQTTFacility extends BaseFacility {
         if (this.server) {
           this.server.close()
         }
-        aedes.close()
+        this.aedes.close()
         for (const client of this.clients) {
           client.end()
         }
