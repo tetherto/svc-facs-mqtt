@@ -1,6 +1,6 @@
 'use strict'
 
-const BaseFacility = require('bfx-facs-base')
+const BaseFacility = require('@bitfinex/bfx-facs-base')
 const mqtt = require('mqtt')
 const aedes = require('aedes')()
 const async = require('async')

@@ -1,6 +1,6 @@
 {
   "name": "svc-facs-mqtt",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "svc facility for mqtt rpc client",
   "main": "index.js",
   "scripts": {
@@ -34,10 +34,10 @@
   },
   "homepage": "https://github.com/tetherto/svc-facs-mqtt#readme",
   "dependencies": {
+    "@bitfinex/bfx-facs-base": "git+https://github.com/bitfinexcom/bfx-facs-base.git",
     "@bitfinex/lib-js-util-promise": "git+https://github.com/bitfinexcom/lib-js-util-promise.git",
     "aedes": "^0.50.0",
     "async": "^3.2.4",
-    "bfx-facs-base": "git+https://github.com/bitfinexcom/bfx-facs-base.git",
     "mqtt": "^5.0.4"
   },
   "devDependencies": {
