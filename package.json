@@ -1,6 +1,6 @@
 {
   "name": "@tetherto/svc-facs-mqtt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "svc facility for mqtt rpc client",
   "main": "index.js",
   "scripts": {
